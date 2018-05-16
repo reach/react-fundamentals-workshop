@@ -1,0 +1,12 @@
+{
+  "name": "react-fundamentals",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "prettier": {
+    "printWidth": 58
+  },
+  "dependencies": {
+    "prettier": "^1.12.1"
+  }
+}
