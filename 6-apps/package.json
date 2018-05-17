@@ -1,0 +1,19 @@
+{
+  "name": "1-rendering",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^5.0.2",
+    "form-serialize": "^0.7.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4",
+    "sort-by": "^1.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
