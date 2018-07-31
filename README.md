@@ -41,7 +41,7 @@ Once the dependencies are installed, you can run the app:
 yarn start
 ```
 
-Your browser should open up to a running app that looks like this:
+Your browser should open up to a running app.
 
 ## Troubleshooting
 
