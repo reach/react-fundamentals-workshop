@@ -4,14 +4,6 @@ body {
     "Helvetica Neue", sans-serif;
 }
 
-button {
-  border: none;
-  font: inherit;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
 :focus:not(:focus-visible) {
   outline: none;
 }

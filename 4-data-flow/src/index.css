@@ -3,3 +3,7 @@ body {
     "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
     "Helvetica Neue", sans-serif;
 }
+
+:focus:not(:focus-visible) {
+  outline: none;
+}

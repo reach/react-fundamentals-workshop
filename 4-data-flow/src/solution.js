@@ -78,7 +78,7 @@ class Tabs extends React.Component {
         {this.props.data.map((tab, index) => {
           let isActive = index === this.state.activeIndex;
           return (
-            <div
+            <button
               key={index}
               onClick={() => {
                 this.props.onChange(
@@ -91,7 +91,7 @@ class Tabs extends React.Component {
               }
             >
               {tab.name}
-            </div>
+            </button>
           );
         })}
 
@@ -110,6 +110,8 @@ styles.tab = {
   display: "inline-block",
   padding: 10,
   margin: 10,
+  border: "none",
+  font: "inherit",
   borderBottom: "4px solid",
   borderBottomColor: "#ccc",
   cursor: "pointer"
