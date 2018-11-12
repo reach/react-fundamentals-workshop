@@ -49,7 +49,7 @@ class Tabs extends React.Component {
         {this.props.data.map((tab, index) => {
           let isActive = index === this.state.activeIndex;
           return (
-            <div
+            <button
               onClick={() => {
                 this.setState({ activeIndex: index });
               }}
@@ -58,7 +58,7 @@ class Tabs extends React.Component {
               }
             >
               {tab.name}
-            </div>
+            </button>
           );
         })}
 

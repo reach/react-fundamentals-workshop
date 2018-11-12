@@ -42,8 +42,10 @@ class Tabs extends React.Component {
   render() {
     return (
       <div>
-        <div style={styles.activeTab}>Active Tab</div>
-        <div style={styles.tab}>Inactive tab</div>
+        <button style={styles.activeTab}>
+          Active Tab
+        </button>
+        <button style={styles.tab}>Inactive tab</button>
 
         <div style={styles.panel}>Panel</div>
       </div>
