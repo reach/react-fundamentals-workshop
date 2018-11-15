@@ -11,17 +11,17 @@ let styles = {};
 
 let countries = [
   {
-    id: 1,
+    id: "usa",
     name: "USA",
     description: "Land of the Free, Home of the brave"
   },
   {
-    id: 2,
+    id: "brazil",
     name: "Brazil",
     description: "Sunshine, beaches, and Carnival"
   },
   {
-    id: 3,
+    id: "russia",
     name: "Russia",
     description: "World Cup 2018!"
   }
@@ -69,9 +69,7 @@ class Tabs extends React.Component {
               onClick={() => {
                 this.setState({ activeIndex: index });
               }}
-              style={
-                isActive ? styles.activeTab : styles.tab
-              }
+              style={isActive ? styles.activeTab : styles.tab}
             >
               {tab.name}
             </button>
@@ -79,10 +77,7 @@ class Tabs extends React.Component {
         })}
 
         <div style={styles.panel}>
-          {
-            this.props.data[this.state.activeIndex]
-              .description
-          }
+          {this.props.data[this.state.activeIndex].description}
         </div>
       </div>
     );
