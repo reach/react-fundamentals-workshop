@@ -51,14 +51,18 @@ import "./theremin.css";
 import React, {
   useState,
   useEffect,
-  useMemo
+  useRef
 } from "react";
 import createOscillator from "./createOscillator";
 
 function useTone({ isPlaying, pitch, volume }) {
-  let oscillator = useMemo(() => createOscillator(), []);
+  let oscillatorRef = useRef();
+  if (!oscillatorRef.current) {
+    oscillatorRef.current = createOscillator();
+  }
 
   useEffect(() => {
+    let { current: oscillator } = oscillatorRef;
     if (isPlaying) {
       oscillator.play();
     } else {
