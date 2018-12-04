@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "form-serialize": "^0.7.2",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
     "react-scripts": "1.1.4",
     "sort-by": "^1.2.0"
   },

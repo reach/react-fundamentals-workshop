@@ -1,3 +1,4 @@
+import "./theremin.css";
 import React from "react";
 import createOscillator from "./createOscillator";
 import "./index.css";
@@ -15,7 +16,12 @@ class App extends React.Component {
 
   changeTone = event => {
     const { clientX, clientY } = event;
-    const { top, right, bottom, left } = event.target.getBoundingClientRect();
+    const {
+      top,
+      right,
+      bottom,
+      left
+    } = event.target.getBoundingClientRect();
     const pitch = (clientX - left) / (right - left);
     const volume = 1 - (clientY - top) / (bottom - top);
     this.oscillator.setPitchBend(pitch);
