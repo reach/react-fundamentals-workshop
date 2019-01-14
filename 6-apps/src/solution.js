@@ -120,7 +120,7 @@ class Chat extends React.Component {
     return (
       <div className="chat">
         <header className="chat-header">
-          <h1 className="chat-title">Chat app!</h1>
+          <h1 className="chat-title">Welcome {auth.displayName}</h1>
           <p className="chat-message-count">
             # messages: {messages.length}
           </p>
