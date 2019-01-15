@@ -14,6 +14,6 @@
 //   and then you'll need to call it in the event handlers of the form controls
 ////////////////////////////////////////////////////////////////////////////////
 import "./index.css";
-import "./lecture";
+// import "./lecture";
 // import "./solution";
-// import "./exercise";
+import "./exercise";
