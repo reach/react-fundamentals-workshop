@@ -1,0 +1,27 @@
+{
+  "name": "mega-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && cp -R public/ dist && NODE_ENV=production webpack --config build/webpack.config.js",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@reach/alert": "^0.1.1",
+    "@reach/visually-hidden": "^0.1.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-app": "^3.1.2",
+    "express": "^4.16.3",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "./vendor/react",
+    "react-dom": "./vendor/react-dom",
+    "react-icons": "^3.3.0",
+    "webpack": "^4.17.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.0"
+  }
+}
