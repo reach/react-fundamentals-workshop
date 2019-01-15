@@ -10,7 +10,8 @@ let lessons = [
   "5-forms",
   "6-apps",
   "7-testing",
-  "8-imperative-to-declarative"
+  "8-imperative-to-declarative",
+  "9-carousel"
 ];
 
 lessons.forEach(dir => {
