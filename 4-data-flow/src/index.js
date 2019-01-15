@@ -17,5 +17,5 @@ import "./index.css";
 // import "./lecture";
 // import "./lecture-hooks";
 // import "./solution";
-// import "./exercise";
-import "./exercise.hooks";
+import "./exercise";
+// import "./exercise.hooks";
