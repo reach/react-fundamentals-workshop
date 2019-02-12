@@ -8,7 +8,7 @@ You will need:
 
 * [Git](http://git-scm.com/downloads)
 * [node](https://nodejs.org/)
-* [yarn](https://yarnpkg.com/en/docs/install)
+* [yarn](https://yarnpkg.com/en/docs/install) (Optional. Not Required if you use NPM)
 
 Please install them if you don't have them already.
 

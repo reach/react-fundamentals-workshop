@@ -12,6 +12,6 @@
     "shelljs": "^0.8.2"
   },
   "prettier": {
-    "printWidth": 58
+    "printWidth": 100
   }
 }
