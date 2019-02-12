@@ -48,7 +48,7 @@ let Menu = ({ title, items }) => (
     <ul>
       {items
         .sort(sortBy("name"))
-        .map(item => <MenuItem item={item} />)}
+        .map(item => <MenuItem key={item.id} item={item} />)}
     </ul>
   </div>
 );

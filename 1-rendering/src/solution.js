@@ -38,7 +38,7 @@ const element = (
       {DATA.items
         .filter(item => item.type === "mexican")
         .sort(sortBy("name"))
-        .map(item => <li>{item.name}</li>)}
+        .map(item => <li key={item.id}>{item.name}</li>)}
     </ul>
   </div>
 );

@@ -41,7 +41,7 @@ ReactDOM.render(
     <h1>Menu</h1>
     <ul>
       {items.sort(sortBy("name")).map(item => (
-        <li>
+        <li key={item.id}>
           {item.name} - <small>${item.price}</small>
         </li>
       ))}

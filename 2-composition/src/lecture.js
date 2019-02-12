@@ -15,8 +15,8 @@ ReactDOM.render(
     <ul>
       {tacos
         .sort((a, b) => b.stars - a.stars)
-        .map(taco => (
-          <li style={{ margin: "10px" }}>
+        .map((taco, i) => (
+          <li key={i} style={{ margin: "10px" }}>
             <button
               onClick={() =>
                 alert(taco.name + " is my favorite!")
