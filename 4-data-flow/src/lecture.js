@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import sortBy from "sort-by";
 
-let items = [
+const items = [
   { id: 1, name: "tacos", type: "mexican", price: 6 },
   { id: 2, name: "burrito", type: "mexican", price: 9 },
   { id: 3, name: "tostada", type: "mexican", price: 8 },
@@ -12,7 +12,7 @@ let items = [
   { id: 6, name: "black pudding", type: "english", price: 12 }
 ];
 
-let MenuItem = ({ item, onSelect }) => (
+const MenuItem = ({ item, onSelect }) => (
   <li>
     <button onClick={onSelect}>add</button> {item.name} -{" "}
     {item.name} - <small>${item.price}</small>
@@ -20,17 +20,17 @@ let MenuItem = ({ item, onSelect }) => (
 );
 
 function Menu({ title, items, onItemSelect }) {
-  let [filterType, setFilterType] = useState("_ALL_");
+  const [filterType, setFilterType] = useState("_ALL_");
 
-  let highestPrice = items.reduce((max, item) => {
+  const highestPrice = items.reduce((max, item) => {
     return item.price > max ? item.price : max;
   }, 0);
 
-  let [maxPrice, setMaxPrice] = useState(highestPrice);
+  const [maxPrice, setMaxPrice] = useState(highestPrice);
 
-  let filterByPrice = item => item.price <= maxPrice;
+  const filterByPrice = item => item.price <= maxPrice;
 
-  let filterByType = item => {
+  const filterByType = item => {
     if (filterType === "_ALL_") {
       return true;
     } else {
@@ -38,15 +38,15 @@ function Menu({ title, items, onItemSelect }) {
     }
   };
 
-  let handleFilterChange = event => {
+  const handleFilterChange = event => {
     setFilterType(event.target.value);
   };
 
-  let handleMaxPriceChange = event => {
+  const handleMaxPriceChange = event => {
     setMaxPrice(parseInt(event.target.value, 10));
   };
 
-  let filteredItems = items
+  const filteredItems = items
     .filter(filterByPrice)
     .filter(filterByType)
     .sort(sortBy("name"));
@@ -63,12 +63,8 @@ function Menu({ title, items, onItemSelect }) {
         >
           <div style={{ marginRight: "10px" }}>
             <select onChange={handleFilterChange}>
-              <option value="_ALL_">
-                - filter by type
-              </option>
-              {[
-                ...new Set(items.map(item => item.type))
-              ].map(type => (
+              <option value="_ALL_">- filter by type</option>
+              {[...new Set(items.map(item => item.type))].map(type => (
                 <option value={type}>{type}</option>
               ))}
             </select>
