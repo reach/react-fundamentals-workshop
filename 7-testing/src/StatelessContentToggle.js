@@ -1,32 +1,24 @@
-import React from "react";
+import React from 'react'
 
 class StatelessContentToggle extends React.Component {
   handleClick = () => {
-    if (this.props.onToggle)
-      this.props.onToggle(!this.props.isOpen);
-  };
+    if (this.props.onToggle) this.props.onToggle(!this.props.isOpen)
+  }
 
   render() {
-    let summaryClassName = "ContentToggle__Summary";
+    let summaryClassName = 'ContentToggle__Summary'
 
-    if (this.props.isOpen)
-      summaryClassName +=
-        " ContentToggle__Summary--is-open";
+    if (this.props.isOpen) summaryClassName += ' ContentToggle__Summary--is-open'
 
     return (
       <div className="ContentToggle">
-        <button
-          onClick={this.handleClick}
-          className={summaryClassName}
-        >
+        <button onClick={this.handleClick} className={summaryClassName}>
           {this.props.summary}
         </button>
-        <div className="ContentToggle__Details">
-          {this.props.isOpen && this.props.children}
-        </div>
+        <div className="ContentToggle__Details">{this.props.isOpen && this.props.children}</div>
       </div>
-    );
+    )
   }
 }
 
-export default StatelessContentToggle;
+export default StatelessContentToggle

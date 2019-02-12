@@ -15,9 +15,9 @@
 // - If the user types something into shipping, then checks the checkbox, then
 //   unchecks the checkbox, ensure the field has the information from
 //   before clicking the checkbox the first time
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import serializeForm from "form-serialize";
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import serializeForm from 'form-serialize'
 
 function CheckoutForm() {
   return (
@@ -33,8 +33,7 @@ function CheckoutForm() {
           </p>
           <p>
             <label>
-              Billing State:{" "}
-              <input type="text" size="2" />
+              Billing State: <input type="text" size="2" />
             </label>
           </p>
         </fieldset>
@@ -53,8 +52,7 @@ function CheckoutForm() {
           </p>
           <p>
             <label>
-              Shipping State:{" "}
-              <input type="text" size="2" />
+              Shipping State: <input type="text" size="2" />
             </label>
           </p>
         </fieldset>
@@ -64,10 +62,7 @@ function CheckoutForm() {
         </p>
       </form>
     </div>
-  );
+  )
 }
 
-ReactDOM.render(
-  <CheckoutForm />,
-  document.getElementById("root")
-);
+ReactDOM.render(<CheckoutForm />, document.getElementById('root'))

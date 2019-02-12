@@ -68,14 +68,10 @@
 //    - Create a filter that lets you filter messages in the chat by sender or content
 //    - Add a log out button
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
-import { render } from "react-dom";
-import {
-  login,
-  sendMessage,
-  subscribeToMessages
-} from "./utils";
-import "./index";
+import React from 'react'
+import { render } from 'react-dom'
+import { login, sendMessage, subscribeToMessages } from './utils'
+import './index'
 
 /*
 Here's how to use the ChatUtils:
@@ -108,7 +104,7 @@ class Chat extends React.Component {
           <ol className="message-groups">
             <li className="message-group">
               <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/200/200"/>
+                <img alt="user avatar" src="https://placekitten.com/200/200" />
               </div>
               <ol className="messages">
                 <li className="message">So, check it out:</li>
@@ -123,7 +119,7 @@ class Chat extends React.Component {
             </li>
             <li className="message-group">
               <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/300/300"/>
+                <img alt="user avatar" src="https://placekitten.com/300/300" />
               </div>
               <ol className="messages">
                 <li className="message">Haha</li>
@@ -132,7 +128,7 @@ class Chat extends React.Component {
             </li>
             <li className="message-group">
               <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/200/200"/>
+                <img alt="user avatar" src="https://placekitten.com/200/200" />
               </div>
               <ol className="messages">
                 <li className="message">:|</li>
@@ -142,7 +138,7 @@ class Chat extends React.Component {
         </div>
         <form className="new-message-form">
           <div className="new-message">
-            <input type="text" placeholder="say something..."/>
+            <input type="text" placeholder="say something..." />
           </div>
         </form>
       </div>
@@ -150,4 +146,4 @@ class Chat extends React.Component {
   }
 }
 
-render(<Chat />, document.getElementById("root"));
+render(<Chat />, document.getElementById('root'))

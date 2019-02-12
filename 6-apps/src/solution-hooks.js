@@ -68,18 +68,10 @@
 //    - Create a filter that lets you filter messages in the chat by sender or content
 //    - Add a log out button
 ////////////////////////////////////////////////////////////////////////////////
-import React, {
-  useEffect,
-  useState,
-  useRef
-} from "react";
-import { render } from "react-dom";
-import {
-  login,
-  sendMessage,
-  subscribeToMessages
-} from "./utils";
-import "./index";
+import React, { useEffect, useState, useRef } from 'react'
+import { render } from 'react-dom'
+import { login, sendMessage, subscribeToMessages } from './utils'
+import './index'
 
 /*
 Here's how to use the ChatUtils:
@@ -101,102 +93,81 @@ The world is your oyster!
 */
 
 function AutoScroller(props) {
-  const scrollerRef = useRef();
-  const autoScrollingRef = useRef(true);
+  const scrollerRef = useRef()
+  const autoScrollingRef = useRef(true)
 
   function scrollToBottom() {
-    const scroller = scrollerRef.current;
+    const scroller = scrollerRef.current
     if (scroller && autoScrollingRef.current === true) {
-      scroller.scrollTop = scroller.scrollHeight;
+      scroller.scrollTop = scroller.scrollHeight
     }
   }
 
-  useEffect(scrollToBottom);
+  useEffect(scrollToBottom)
 
   function handleScroll(event) {
-    const scroller = event.target;
-    const distanceToBottom =
-      scroller.scrollHeight -
-      (scroller.scrollTop + scroller.offsetHeight);
-    autoScrollingRef.current = distanceToBottom < 10;
+    const scroller = event.target
+    const distanceToBottom = scroller.scrollHeight - (scroller.scrollTop + scroller.offsetHeight)
+    autoScrollingRef.current = distanceToBottom < 10
   }
 
-  return (
-    <div
-      {...props}
-      onScroll={handleScroll}
-      ref={scrollerRef}
-    />
-  );
+  return <div {...props} onScroll={handleScroll} ref={scrollerRef} />
 }
 
 function Chat() {
-  const [user, setUser] = useState(null);
-  const [messages, setMessages] = useState([]);
+  const [user, setUser] = useState(null)
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
     login((error, user) => {
-      setUser(user);
-    });
-  }, []);
+      setUser(user)
+    })
+  }, [])
 
-  useEffect(
-    () => {
-      if (user) {
-        subscribeToMessages(messages => {
-          setMessages(messages);
-        });
-      }
-    },
-    [user]
-  );
+  useEffect(() => {
+    if (user) {
+      subscribeToMessages(messages => {
+        setMessages(messages)
+      })
+    }
+  }, [user])
 
-  const groupedMessages = messages.reduce(
-    (memo, message) => {
-      const lastGroup = memo[memo.length - 1];
+  const groupedMessages = messages.reduce((memo, message) => {
+    const lastGroup = memo[memo.length - 1]
 
-      if (lastGroup && lastGroup[0].uid === message.uid) {
-        // Same speaker
-        lastGroup.push(message);
-      } else {
-        // new speaker
-        memo.push([message]);
-      }
+    if (lastGroup && lastGroup[0].uid === message.uid) {
+      // Same speaker
+      lastGroup.push(message)
+    } else {
+      // new speaker
+      memo.push([message])
+    }
 
-      return memo;
-    },
-    []
-  );
+    return memo
+  }, [])
 
   function handleSubmit(event) {
-    event.preventDefault();
-    sendMessage(user, inputRef.current.value);
-    event.target.reset(); // reset the form
+    event.preventDefault()
+    sendMessage(user, inputRef.current.value)
+    event.target.reset() // reset the form
   }
 
-  const inputRef = useRef();
+  const inputRef = useRef()
 
   return !user ? (
     <div>Loading...</div>
   ) : (
     <div className="chat">
       <header className="chat-header">
-        <h1 className="chat-title">
-          Welcome {user.displayName}
-        </h1>
-        <p className="chat-message-count">
-          # messages: {messages.length}
-        </p>
+        <h1 className="chat-title">Welcome {user.displayName}</h1>
+        <p className="chat-message-count"># messages: {messages.length}</p>
       </header>
       <AutoScroller className="messages">
         <ol className="message-groups">
           {groupedMessages.map((group, index) => (
             <li className="message-group" key={index}>
               <div className="message-group-avatar">
-                <img
-                  alt="user avatar"
-                  src={group[0].photoURL}
-                />
+                <img alt="user avatar" src={group[0].photoURL} />
               </div>
               <ol className="messages">
                 {group.map((message, index) => (
@@ -209,20 +180,13 @@ function Chat() {
           ))}
         </ol>
       </AutoScroller>
-      <form
-        className="new-message-form"
-        onSubmit={handleSubmit}
-      >
+      <form className="new-message-form" onSubmit={handleSubmit}>
         <div className="new-message">
-          <input
-            type="text"
-            placeholder="say something..."
-            ref={inputRef}
-          />
+          <input type="text" placeholder="say something..." ref={inputRef} />
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-render(<Chat />, document.getElementById("root"));
+render(<Chat />, document.getElementById('root'))

@@ -1,10 +1,10 @@
-import React from "react";
-import StatelessContentToggle from "./StatelessContentToggle";
+import React from 'react'
+import StatelessContentToggle from './StatelessContentToggle'
 
 class ContentToggle extends React.Component {
   state = {
     isOpen: false
-  };
+  }
 
   render() {
     return (
@@ -13,8 +13,8 @@ class ContentToggle extends React.Component {
         isOpen={this.state.isOpen}
         onToggle={isOpen => this.setState({ isOpen })}
       />
-    );
+    )
   }
 }
 
-export default ContentToggle;
+export default ContentToggle

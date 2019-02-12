@@ -1,7 +1,6 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
-    "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
 }
 
 .ContentToggle {
@@ -27,11 +26,11 @@ body {
 .ContentToggle__Summary:before {
   display: inline-block;
   width: 1em;
-  content: "▸";
+  content: '▸';
 }
 
 .ContentToggle__Summary--is-open:before {
-  content: "▾";
+  content: '▾';
 }
 
 .ContentToggle__Details {

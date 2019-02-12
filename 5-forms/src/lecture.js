@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 
 function Forms() {
-  const [name, setName] = useState("Ryan");
+  const [name, setName] = useState('Ryan')
 
   return (
     <div>
@@ -11,14 +11,8 @@ function Forms() {
         <p>
           Controlled
           <br />
-          <input
-            value={name}
-            onChange={event => setName(event.target.value)}
-            type="text"
-          />
-          <button onClick={() => setName("Michael")}>
-            Set to Michael
-          </button>
+          <input value={name} onChange={event => setName(event.target.value)} type="text" />
+          <button onClick={() => setName('Michael')}>Set to Michael</button>
         </p>
         <p>
           Uncontrolled
@@ -31,10 +25,7 @@ function Forms() {
         </p>
       </form>
     </div>
-  );
+  )
 }
 
-ReactDOM.render(
-  <Forms />,
-  document.getElementById("root")
-);
+ReactDOM.render(<Forms />, document.getElementById('root'))

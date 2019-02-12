@@ -1,61 +1,50 @@
-import "./index.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import sortBy from "sort-by";
+import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import sortBy from 'sort-by'
 
 const items = [
-  { id: 1, name: "tacos", type: "mexican", price: 6 },
-  { id: 2, name: "burrito", type: "mexican", price: 9 },
-  { id: 3, name: "tostada", type: "mexican", price: 8 },
-  { id: 4, name: "mushy peas", type: "english", price: 3 },
-  { id: 5, name: "fish and chips", type: "english", price: 12 },
-  { id: 6, name: "black pudding", type: "english", price: 12 }
-];
+  { id: 1, name: 'tacos', type: 'mexican', price: 6 },
+  { id: 2, name: 'burrito', type: 'mexican', price: 9 },
+  { id: 3, name: 'tostada', type: 'mexican', price: 8 },
+  { id: 4, name: 'mushy peas', type: 'english', price: 3 },
+  { id: 5, name: 'fish and chips', type: 'english', price: 12 },
+  { id: 6, name: 'black pudding', type: 'english', price: 12 }
+]
 
 const MenuItem = ({ item }) => (
   <li>
     {item.name} - <small>${item.price}</small>
   </li>
-);
+)
 
 const Menu = ({ title, items }) => (
   <div>
     <h1>{title}</h1>
-      <select>
-        <option value="_ALL_">- filter by type -</option>
-        
-      </select>
-      <br/><br/>
-      <div>
-        <label>
-          Max Price 12
-          <br />
-          $0{' '}
-          <input
-            type="range"
-            min="0"
-            max={12}
-            defaultValue={12}
-          />{' '}
-          12
-        </label>
-      </div>
+    <select>
+      <option value="_ALL_">- filter by type -</option>
+    </select>
+    <br />
+    <br />
+    <div>
+      <label>
+        Max Price 12
+        <br />
+        $0 <input type="range" min="0" max={12} defaultValue={12} /> 12
+      </label>
+    </div>
     <ul>
-      {items
-        .sort(sortBy("name"))
-        .map(item => <MenuItem key={item.id} item={item} />)}
+      {items.sort(sortBy('name')).map(item => (
+        <MenuItem key={item.id} item={item} />
+      ))}
     </ul>
   </div>
-);
+)
 
 ReactDOM.render(
   <Menu title="Menu" items={items} />,
-  document.getElementById("root")
-);
-
-
-
-
+  document.getElementById('root')
+)
 
 // import './index.css'
 // import React, { useState } from 'react'

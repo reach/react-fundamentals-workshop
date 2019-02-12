@@ -13,14 +13,10 @@
 // - Create a filter that lets you filter messages in the chat by
 //   sender and/or content
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
-import { render } from "react-dom";
-import {
-  login,
-  sendMessage,
-  subscribeToMessages
-} from "./utils";
-import "./index";
+import React from 'react'
+import { render } from 'react-dom'
+import { login, sendMessage, subscribeToMessages } from './utils'
+import './index'
 
 /*
 Here's how to use the ChatUtils:
@@ -43,28 +39,20 @@ The world is your oyster!
 
 class ScrollHandler extends React.Component {
   getSnapshotBeforeUpdate() {
-    const {
-      clientHeight,
-      scrollTop,
-      scrollHeight
-    } = this.node;
-    const partialPixelBuffer = 10;
-    const scrolledUp =
-      clientHeight + scrollTop <
-      scrollHeight - partialPixelBuffer;
-    return scrolledUp;
+    const { clientHeight, scrollTop, scrollHeight } = this.node
+    const partialPixelBuffer = 10
+    const scrolledUp = clientHeight + scrollTop < scrollHeight - partialPixelBuffer
+    return scrolledUp
   }
 
   componentDidUpdate(prevProps, prevState, scrolledUp) {
     if (!scrolledUp) {
-      this.node.scrollTop = this.node.scrollHeight;
+      this.node.scrollTop = this.node.scrollHeight
     }
   }
 
   render() {
-    return (
-      <div {...this.props} ref={n => (this.node = n)} />
-    );
+    return <div {...this.props} ref={n => (this.node = n)} />
   }
 }
 
@@ -72,68 +60,59 @@ class Chat extends React.Component {
   state = {
     auth: null,
     messages: []
-  };
+  }
 
   componentDidMount() {
     login((error, auth) => {
-      this.setState({ auth });
+      this.setState({ auth })
 
       subscribeToMessages(messages => {
-        this.setState({ messages });
-      });
-    });
+        this.setState({ messages })
+      })
+    })
   }
 
   handleSubmit = event => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const { auth } = this.state;
-    const messageText = this.messageInput.value;
+    const { auth } = this.state
+    const messageText = this.messageInput.value
 
     if (/\S/.test(messageText)) {
-      sendMessage(auth, messageText);
-      event.target.reset();
+      sendMessage(auth, messageText)
+      event.target.reset()
     }
-  };
+  }
 
   render() {
-    const { auth, messages } = this.state;
+    const { auth, messages } = this.state
 
-    if (auth == null) return <p>Loading...</p>;
+    if (auth == null) return <p>Loading...</p>
 
-    const messageGroups = messages.reduce(
-      (groups, message) => {
-        const prevGroup =
-          groups.length && groups[groups.length - 1];
+    const messageGroups = messages.reduce((groups, message) => {
+      const prevGroup = groups.length && groups[groups.length - 1]
 
-        if (prevGroup && prevGroup[0].uid === message.uid) {
-          prevGroup.push(message);
-        } else {
-          groups.push([message]);
-        }
+      if (prevGroup && prevGroup[0].uid === message.uid) {
+        prevGroup.push(message)
+      } else {
+        groups.push([message])
+      }
 
-        return groups;
-      },
-      []
-    );
+      return groups
+    }, [])
 
     return (
       <div className="chat">
         <header className="chat-header">
           <h1 className="chat-title">Welcome {auth.displayName}</h1>
-          <p className="chat-message-count">
-            # messages: {messages.length}
-          </p>
+          <p className="chat-message-count"># messages: {messages.length}</p>
         </header>
         <ScrollHandler className="messages">
           <ol className="message-groups">
             {messageGroups.map((messages, index) => (
               <li key={index} className="message-group">
                 <div className="message-group-avatar">
-                  <img
-                    alt="user avatar"
-                    src={messages[0].photoURL}
-                  />
+                  <img alt="user avatar" src={messages[0].photoURL} />
                 </div>
                 <ol className="messages">
                   {messages.map((message, index) => (
@@ -146,10 +125,7 @@ class Chat extends React.Component {
             ))}
           </ol>
         </ScrollHandler>
-        <form
-          className="new-message-form"
-          onSubmit={this.handleSubmit}
-        >
+        <form className="new-message-form" onSubmit={this.handleSubmit}>
           <div className="new-message">
             <input
               ref={node => (this.messageInput = node)}
@@ -159,8 +135,8 @@ class Chat extends React.Component {
           </div>
         </form>
       </div>
-    );
+    )
   }
 }
 
-render(<Chat />, document.getElementById("root"));
+render(<Chat />, document.getElementById('root'))

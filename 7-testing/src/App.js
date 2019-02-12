@@ -1,5 +1,5 @@
-import React from "react";
-import ContentToggle from "./ContentToggle";
+import React from 'react'
+import ContentToggle from './ContentToggle'
 
 class App extends React.Component {
   render() {
@@ -10,8 +10,8 @@ class App extends React.Component {
           <p>YOOO</p>
         </ContentToggle>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
