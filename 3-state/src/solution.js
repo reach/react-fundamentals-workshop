@@ -15,50 +15,40 @@
 // 6. Render the second set of tabs INSIDE THE PANEL OF THE
 //    FIRST TABS!
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-let styles = {};
+const styles = {};
 
-let countries = [
+const countries = [
   { id: 1, name: "USA", description: "Land of the Free, Home of the brave" },
   { id: 2, name: "Brazil", description: "Sunshine, beaches, and Carnival" },
   { id: 3, name: "Russia", description: "World Cup 2018!" }
 ];
 
-class Tabs extends React.Component {
-  state = {
-    activeIndex: 0
-  };
+function Tabs({ data }) {
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  render() {
-    return (
-      <div>
-        {this.props.data.map((tab, index) => {
-          let isActive = index === this.state.activeIndex;
-          return (
-            <button
-              onClick={() => {
-                this.setState({ activeIndex: index });
-              }}
-              style={
-                isActive ? styles.activeTab : styles.tab
-              }
-            >
-              {tab.name}
-            </button>
-          );
-        })}
+  return (
+    <div>
+      {data.map((tab, index) => {
+        const isActive = index === activeIndex;
+        const style = isActive ? styles.activeTab : styles.tab
+        return (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            style={style}>
+            {tab.name}
+          </button>
+        );
+      })}
 
-        <div style={styles.panel}>
-          {
-            this.props.data[this.state.activeIndex]
-              .description
-          }
-        </div>
+      <div style={styles.panel}>
+        {data[activeIndex].description}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 styles.tab = {
@@ -71,6 +61,7 @@ styles.tab = {
   borderBottomColor: "#ccc",
   cursor: "pointer"
 };
+
 styles.activeTab = {
   ...styles.tab,
   borderBottomColor: "#000"
