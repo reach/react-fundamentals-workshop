@@ -20,26 +20,15 @@ import ReactDOM from "react-dom";
 import serializeForm from "form-serialize";
 
 function CheckoutForm() {
-  const [billingName, setBillingName] = useState(
-    "Ryan Florence"
-  );
-  const [billingState, setBillingState] = useState("WA");
-  const [shippingName, setShippingName] = useState(
-    "Michael Jackson"
-  );
-  const [shippingState, setShippingState] = useState(
-    "CA"
-  );
-  const [
-    shippingSameAsBilling,
-    setShippingSameAsBilling
-  ] = useState(false);
+  const [billingName, setBillingName] = useState('');
+  const [billingState, setBillingState] = useState('');
+  const [shippingName, setShippingName] = useState('');
+  const [shippingState, setShippingState] = useState('');
+  const [shippingSameAsBilling, setShippingSameAsBilling] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
-    const values = serializeForm(event.target, {
-      hash: true
-    });
+    const values = serializeForm(event.target, { hash: true });
     console.log(values);
   }
 
@@ -131,7 +120,6 @@ function CheckoutForm() {
             </label>
           </p>
         </fieldset>
-
         <p>
           <button>Submit</button>
         </p>

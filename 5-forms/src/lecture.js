@@ -13,9 +13,7 @@ function Forms() {
           <br />
           <input
             value={name}
-            onChange={event => {
-              setName(event.target.value);
-            }}
+            onChange={event => setName(event.target.value)}
             type="text"
           />
           <button onClick={() => setName("Michael")}>
@@ -28,9 +26,7 @@ function Forms() {
           <input
             type="text"
             defaultValue="Burrito"
-            onChange={event => {
-              console.log(event.target.value);
-            }}
+            onChange={event => console.log(event.target.value)}
           />
         </p>
       </form>
