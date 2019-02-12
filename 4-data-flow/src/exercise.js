@@ -4,39 +4,16 @@
 // - Flow data up from `Tabs` to let the `App` know what is the active tab.
 // - Pass that data down to Flag to display the proper flag
 ////////////////////////////////////////////////////////////////////////////////
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-let styles = {};
+const styles = {};
 
-let countries = [
-  {
-    id: "usa",
-    name: "USA",
-    description: "Land of the Free, Home of the brave"
-  },
-  {
-    id: "brazil",
-    name: "Brazil",
-    description: "Sunshine, beaches, and Carnival"
-  },
-  {
-    id: "russia",
-    name: "Russia",
-    description: "World Cup 2018!"
-  }
+const countries = [
+  { id: "usa", name: "USA", description: "Land of the Free, Home of the brave" },
+  { id: "brazil", name: "Brazil", description: "Sunshine, beaches, and Carnival" },
+  { id: "russia", name: "Russia", description: "World Cup 2018!" }
 ];
-
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Tabs data={countries} />
-        <Flag country="usa" />
-      </div>
-    );
-  }
-}
 
 const FLAGS = {
   usa: require("./flags/usa.png"),
@@ -44,44 +21,52 @@ const FLAGS = {
   brazil: require("./flags/brazil.png")
 };
 
-let Flag = ({ country }) => (
-  <img
-    style={{ position: "fixed", top: 20, right: 20 }}
-    width="100"
-    alt={`Flag of ${country}`}
-    src={FLAGS[country]}
-  />
-);
+function App() {
+  return (
+    <div>
+      <Tabs data={countries} />
+      <Flag country="usa" />
+    </div>
+  );
+}
 
-class Tabs extends React.Component {
-  state = {
-    activeIndex: 0
-  };
+function Flag({ country }) {
+  return (
+    <img
+      style={{ position: "fixed", top: 20, right: 20 }}
+      width="100"
+      alt={`Flag of ${country}`}
+      src={FLAGS[country]}
+    />
+  );
+}
 
-  render() {
-    return (
-      <div>
-        {this.props.data.map((tab, index) => {
-          let isActive = index === this.state.activeIndex;
-          return (
-            <button
-              key={index}
-              onClick={() => {
-                this.setState({ activeIndex: index });
-              }}
-              style={isActive ? styles.activeTab : styles.tab}
-            >
-              {tab.name}
-            </button>
-          );
-        })}
+function Tabs({ data }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <div>
+      {data.map((tab, index) => {
+        let isActive = index === activeIndex;
+        return (
+          <button
+            key={index}
+            onClick={() => {
+              setActiveIndex(index);
+            }}
+            style={
+              isActive ? styles.activeTab : styles.tab
+            }
+          >
+            {tab.name}
+          </button>
+        );
+      })}
 
-        <div style={styles.panel}>
-          {this.props.data[this.state.activeIndex].description}
-        </div>
+      <div style={styles.panel}>
+        {data[activeIndex].description}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 styles.tab = {

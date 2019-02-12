@@ -12,7 +12,8 @@
 //
 // 5. Come up with your own data and render another set of
 //    tabs
-// 6. Render the second set of tabs INSIDE the panel of the first tabs
+// 6. Render the second set of tabs INSIDE THE PANEL OF THE
+//    FIRST TABS!
 ////////////////////////////////////////////////////////////////////////////////
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
@@ -20,21 +21,9 @@ import ReactDOM from "react-dom";
 let styles = {};
 
 let countries = [
-  {
-    id: 1,
-    name: "USA",
-    description: "Land of the Free, Home of the brave"
-  },
-  {
-    id: 2,
-    name: "Brazil",
-    description: "Sunshine, beaches, and Carnival"
-  },
-  {
-    id: 3,
-    name: "Russia",
-    description: "World Cup 2018!"
-  }
+  { id: 1, name: "USA", description: "Land of the Free, Home of the brave" },
+  { id: 2, name: "Brazil", description: "Sunshine, beaches, and Carnival" },
+  { id: 3, name: "Russia", description: "World Cup 2018!" }
 ];
 
 function Tabs({ data }) {
