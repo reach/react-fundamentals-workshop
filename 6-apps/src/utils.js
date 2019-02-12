@@ -57,7 +57,7 @@ const saveAuth = auth =>
 export const login = callback => {
   firebase.auth().onAuthStateChanged(auth => {
     if (auth) {
-      console.log(auth);
+      // console.log(auth);
       const user = {
         photoURL: auth.photoURL,
         displayName: auth.displayName,

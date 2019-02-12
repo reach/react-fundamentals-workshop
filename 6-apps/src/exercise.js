@@ -150,5 +150,4 @@ class Chat extends React.Component {
   }
 }
 
-
 render(<Chat />, document.getElementById("root"));
