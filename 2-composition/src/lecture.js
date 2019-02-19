@@ -17,9 +17,7 @@ ReactDOM.render(
         .sort((a, b) => b.stars - a.stars)
         .map((taco, i) => (
           <li key={i} style={{ margin: '10px' }}>
-            <button onClick={() => alert(taco.name + ' is my favorite!')}>
-              +1
-            </button>{' '}
+            <button onClick={() => alert(taco.name + ' is my favorite!')}>+1</button>{' '}
             {Array.from({ length: taco.stars }).map(() => '★')}
             {Array.from({ length: 5 - taco.stars }).map(() => '☆')} {taco.name}
           </li>
