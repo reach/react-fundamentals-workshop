@@ -30,7 +30,7 @@ ReactDOM.render(
 // import React from 'react'
 // import ReactDOM from 'react-dom'
 
-// let tacos = [
+// const tacos = [
 //   { name: 'Carnitas', stars: 5 },
 //   { name: 'Pollo', stars: 3 },
 //   { name: 'Carne Asada', stars: 4 },
@@ -38,23 +38,21 @@ ReactDOM.render(
 //   { name: 'Mole', stars: 5 }
 // ]
 
-// let Stars = ({ stars, total = 5 }) => (
+// const Stars = ({ stars, total = 5 }) => (
 //   <span>
 //     {Array.from({ length: stars }).map(() => '★')}
-//     {Array.from({
-//       length: total - stars
-//     }).map(() => '☆')}
+//     {Array.from({ length: total - stars }).map(() => '☆')}
 //   </span>
 // )
 
-// let Taco = ({ taco }) => (
+// const Taco = ({ taco }) => (
 //   <li style={{ margin: '10px' }}>
 //     <button onClick={() => alert(taco.name + ' is my favorite!')}>+1</button>{' '}
 //     <Stars stars={taco.stars} /> {taco.name}
 //   </li>
 // )
 
-// let App = () => (
+// const App = () => (
 //   <div>
 //     <h1>Welcome to React!</h1>
 //     <ul>
