@@ -21,13 +21,13 @@ let items = [
   { id: 6, name: 'black pudding', type: 'english', price: 12 }
 ]
 
-let MenuItem = ({ item }) => (
+const MenuItem = ({ item }) => (
   <li>
     {item.name} - <small>${item.price}</small>
   </li>
 )
 
-let Menu = ({ title, items }) => (
+const Menu = ({ title, items }) => (
   <div>
     <h1>{title}</h1>
     <ul>
@@ -40,14 +40,8 @@ let Menu = ({ title, items }) => (
 
 ReactDOM.render(
   <div>
-    <Menu
-      title="Mexican"
-      items={items.filter(item => item.type === 'mexican')}
-    />
-    <Menu
-      title="English"
-      items={items.filter(item => item.type === 'english')}
-    />
+    <Menu title="Mexican" items={items.filter(item => item.type === 'mexican')} />
+    <Menu title="English" items={items.filter(item => item.type === 'english')} />
   </div>,
   document.getElementById('root')
 )

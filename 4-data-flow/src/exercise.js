@@ -50,9 +50,7 @@ function Tabs({ data }) {
         return (
           <button
             key={index}
-            onClick={() => {
-              setActiveIndex(index)
-            }}
+            onClick={() => setActiveIndex(index)}
             style={isActive ? styles.activeTab : styles.tab}
           >
             {tab.name}
