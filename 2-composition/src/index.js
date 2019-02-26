@@ -1,4 +1,4 @@
 import './index.css'
-// import "./lecture";
+// import './lecture'
 // import "./solution";
 import './exercise'

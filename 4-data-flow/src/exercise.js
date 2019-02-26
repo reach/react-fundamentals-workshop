@@ -10,8 +10,16 @@ import ReactDOM from 'react-dom'
 const styles = {}
 
 const countries = [
-  { id: 'usa', name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 'brazil', name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
+  {
+    id: 'usa',
+    name: 'USA',
+    description: 'Land of the Free, Home of the brave'
+  },
+  {
+    id: 'brazil',
+    name: 'Brazil',
+    description: 'Sunshine, beaches, and Carnival'
+  },
   { id: 'russia', name: 'Russia', description: 'World Cup 2018!' }
 ]
 
@@ -22,10 +30,16 @@ const FLAGS = {
 }
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState(0)
+
   return (
     <div>
-      <Tabs data={countries} />
-      <Flag country="usa" />
+      <Tabs
+        data={countries}
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+      />
+      <Flag country={countries[activeIndex].id} />
     </div>
   )
 }
@@ -41,8 +55,7 @@ function Flag({ country }) {
   )
 }
 
-function Tabs({ data }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+function Tabs({ data, activeIndex, setActiveIndex }) {
   return (
     <div>
       {data.map((tab, index) => {

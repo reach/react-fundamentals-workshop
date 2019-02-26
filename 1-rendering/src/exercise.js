@@ -31,8 +31,17 @@ const DATA = {
 }
 
 const element = (
-  // put your code here!
-  <div>Make it happen</div>
+  <div>
+    <h1>{DATA.title}</h1>
+    <ul>
+      {DATA.items
+        .filter(item => item.type === 'mexican')
+        .sort(sortBy('name'))
+        .map((item, index) => {
+          return <li key={index}>{item.name}</li>
+        })}
+    </ul>
+  </div>
 )
 
 ReactDOM.render(element, document.getElementById('root'))

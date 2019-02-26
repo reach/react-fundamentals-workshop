@@ -2,27 +2,33 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 function Forms() {
-  const [name, setName] = useState('Ryan')
+  const [fields, setFields] = useState({ fieldOne: '', fieldTwo: '' })
+
+  const handleSubmit = e => {
+    e.preventDefault()
+  }
 
   return (
     <div>
       <h1>Forms</h1>
-      <form>
-        <p>
-          Controlled
-          <br />
-          <input value={name} onChange={event => setName(event.target.value)} type="text" />
-          <button onClick={() => setName('Michael')}>Set to Michael</button>
-        </p>
-        <p>
-          Uncontrolled
-          <br />
-          <input
-            type="text"
-            defaultValue="Burrito"
-            onChange={event => console.log(event.target.value)}
-          />
-        </p>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={fields.fieldOne}
+          onChange={e => {
+            setFields(
+              Object.assign({}, fields, { fieldOne: e.target.value })
+            )
+          }}
+        />
+        <input
+          type="text"
+          value={fields.fieldTwo}
+          onChange={e => {
+            setFields({ fieldTwo: e.target.value })
+          }}
+        />
+        <button type="submit">Submit</button>
       </form>
     </div>
   )

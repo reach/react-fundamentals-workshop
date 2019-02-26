@@ -20,20 +20,43 @@ import ReactDOM from 'react-dom'
 import serializeForm from 'form-serialize'
 
 function CheckoutForm() {
+  const [sameAsBilling, setSameAsBilling] = useState(false)
+  const [billingNameValue, setBillingNameValue] = useState('')
+  const [billingStateValue, setBillingStateValue] = useState('')
+  const [shippingNameValue, setShippingNameValue] = useState('')
+  const [shippingStateValue, setShippingStateValue] = useState('')
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const values = serializeForm(event.target, { hash: true })
+    console.log(values)
+  }
+
   return (
     <div>
       <h1>Checkout</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Billing Address</legend>
           <p>
             <label>
-              Billing Name: <input type="text" />
+              Billing Name:{' '}
+              <input
+                type="text"
+                name="billingName"
+                onChange={e => setBillingNameValue(e.target.value)}
+              />
             </label>
           </p>
           <p>
             <label>
-              Billing State: <input type="text" size="2" />
+              Billing State:{' '}
+              <input
+                type="text"
+                size="2"
+                name="billingState"
+                onChange={e => setBillingStateValue(e.target.value)}
+              />
             </label>
           </p>
         </fieldset>
@@ -42,17 +65,46 @@ function CheckoutForm() {
 
         <fieldset>
           <label>
-            <input type="checkbox" /> Same as billing
+            <input
+              type="checkbox"
+              onChange={e => {
+                setSameAsBilling(e.target.checked)
+                if (e.target.checked) {
+                  setShippingNameValue('')
+                  setShippingStateValue('')
+                }
+              }}
+            />{' '}
+            Same as billing
           </label>
           <legend>Shipping Address</legend>
           <p>
             <label>
-              Shipping Name: <input type="text" />
+              Shipping Name:{' '}
+              <input
+                type="text"
+                value={
+                  sameAsBilling ? billingNameValue : shippingNameValue
+                }
+                name="shippingName"
+                onChange={e => setShippingNameValue(e.target.value)}
+              />
             </label>
           </p>
           <p>
             <label>
-              Shipping State: <input type="text" size="2" />
+              Shipping State:{' '}
+              <input
+                type="text"
+                size="2"
+                value={
+                  sameAsBilling
+                    ? billingStateValue
+                    : shippingStateValue
+                }
+                name="shippingState"
+                onChange={e => setShippingStateValue(e.target.value)}
+              />
             </label>
           </p>
         </fieldset>

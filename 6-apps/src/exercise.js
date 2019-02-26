@@ -56,7 +56,7 @@
 //      scroll position in state, then check that. Either way works fine.
 //
 // 8. Group the messages by author
-//    - Notice whne somebody posts multiple messages their avatar shows up with
+//    - Notice when somebody posts multiple messages their avatar shows up with
 //      ever message. There are a few ways to do this, but the easiest way to do
 //      it with the markup we've provided is to transform the array into an array
 //      of arrays. Each child array is a group of messages from the same author.
@@ -68,7 +68,7 @@
 //    - Create a filter that lets you filter messages in the chat by sender or content
 //    - Add a log out button
 ////////////////////////////////////////////////////////////////////////////////
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { render } from 'react-dom'
 import { login, sendMessage, subscribeToMessages } from './utils'
 import './index'
@@ -92,58 +92,89 @@ unsubscribe() // stop listening for new messages
 The world is your oyster!
 */
 
-class Chat extends React.Component {
-  render() {
-    return (
-      <div className="chat">
-        <header className="chat-header">
-          <h1 className="chat-title">Welcome Sara</h1>
-          <p className="chat-message-count"># messages: 3</p>
-        </header>
-        <div className="messages">
-          <ol className="message-groups">
-            <li className="message-group">
-              <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/200/200" />
-              </div>
-              <ol className="messages">
-                <li className="message">So, check it out:</li>
-                <li className="message">QA Engineer walks into a bar.</li>
-                <li className="message">Orders a beer.</li>
-                <li className="message">Orders 0 beers.</li>
-                <li className="message">Orders 999999999 beers.</li>
-                <li className="message">Orders a lizard.</li>
-                <li className="message">Orders -1 beers.</li>
-                <li className="message">Orders a sfdeljknesv.</li>
-              </ol>
-            </li>
-            <li className="message-group">
-              <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/300/300" />
-              </div>
-              <ol className="messages">
-                <li className="message">Haha</li>
-                <li className="message">Stop stealing other people's jokes :P</li>
-              </ol>
-            </li>
-            <li className="message-group">
-              <div className="message-group-avatar">
-                <img alt="user avatar" src="https://placekitten.com/200/200" />
-              </div>
-              <ol className="messages">
-                <li className="message">:|</li>
-              </ol>
-            </li>
-          </ol>
-        </div>
-        <form className="new-message-form">
-          <div className="new-message">
-            <input type="text" placeholder="say something..." />
-          </div>
-        </form>
-      </div>
-    )
+const ScrollManager = ({ children, ...rest }) => {
+  const scrollerRef = useRef()
+
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (scroller) {
+      scroller.scrollTop = scroller.scrollHeight
+    }
+  })
+
+  return (
+    <div {...rest} ref={scrollerRef}>
+      {children}
+    </div>
+  )
+}
+
+const Chat = () => {
+  const [user, setUser] = useState()
+  const [messages, setMessages] = useState([])
+  const [text, changeText] = useState('')
+
+  useEffect(() => {
+    login((error, user) => {
+      setUser(user)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (user) {
+      subscribeToMessages(messages => {
+        setMessages(messages)
+      })
+    }
+  }, [user])
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    sendMessage(user, text)
+    changeText('')
   }
+
+  if (!user) return <div>Loading...</div>
+
+  return (
+    <div className="chat">
+      <header className="chat-header">
+        <h1 className="chat-title">
+          Welcome {user.displayName || 'No Name Available'}
+        </h1>
+        <p className="chat-message-count"># messages: 3</p>
+      </header>
+      <ScrollManager className="messages">
+        <ol className="message-groups">
+          {Array.isArray(messages) &&
+            messages.map((message, i) => {
+              return (
+                <li className="message-group" key={i}>
+                  <div className="message-group-avatar">
+                    <img alt="user avatar" src={message.photoURL} />
+                  </div>
+                  <ol className="messages">
+                    <li className="message">{message.text}</li>
+                  </ol>
+                </li>
+              )
+            })}
+        </ol>
+      </ScrollManager>
+      <form className="new-message-form" onSubmit={handleSubmit}>
+        <div className="new-message">
+          <input
+            type="text"
+            placeholder="say something..."
+            value={text}
+            onChange={e => {
+              changeText(e.target.value)
+            }}
+          />
+        </div>
+      </form>
+    </div>
+  )
 }
 
 render(<Chat />, document.getElementById('root'))

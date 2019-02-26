@@ -8,7 +8,7 @@
 // 4. Pass in a custom "name" to each Menu
 ////////////////////////////////////////////////////////
 import './index.css'
-import React from 'react'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import sortBy from 'sort-by'
 
@@ -21,16 +21,41 @@ const items = [
   { id: 6, name: 'black pudding', type: 'english', price: 12 }
 ]
 
+const MenuItem = props => {
+  return (
+    <li>
+      {props.name} - <small>${props.price}</small>
+    </li>
+  )
+}
+
+const Menu = props => {
+  return (
+    <Fragment>
+      {props.title === 'Mexican' && <h1>Menu: Mexican</h1>}
+      <ul>
+        {props.items.sort(sortBy('name')).map(item => (
+          <MenuItem key={item.id} {...item} />
+        ))}
+      </ul>
+    </Fragment>
+  )
+}
+
 ReactDOM.render(
   <div>
-    <h1>Menu</h1>
-    <ul>
-      {items.sort(sortBy('name')).map(item => (
-        <li key={item.id}>
-          {item.name} - <small>${item.price}</small>
-        </li>
-      ))}
-    </ul>
+    <Menu
+      title="Mexican"
+      items={items.filter(item => {
+        return item.type === 'mexican'
+      })}
+    />
+    <Menu
+      title="English"
+      items={items.filter(item => {
+        return item.type === 'english'
+      })}
+    />
   </div>,
   document.getElementById('root')
 )

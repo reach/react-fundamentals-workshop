@@ -15,27 +15,50 @@
 // 6. Render the second set of tabs INSIDE THE PANEL OF THE
 //    FIRST TABS!
 ////////////////////////////////////////////////////////////////////////////////
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-let styles = {}
+const styles = {}
 
-let countries = [
-  { id: 1, name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { id: 2, name: 'Brazil', description: 'Sunshine, beaches, and Carnival' },
+const countries = [
+  {
+    id: 1,
+    name: 'USA',
+    description: 'Land of the Free, Home of the brave'
+  },
+  {
+    id: 2,
+    name: 'Brazil',
+    description: 'Sunshine, beaches, and Carnival'
+  },
   { id: 3, name: 'Russia', description: 'World Cup 2018!' }
 ]
 
-class Tabs extends React.Component {
-  render() {
-    return (
-      <div>
-        <button style={styles.activeTab}>Active Tab</button>
-        <button style={styles.tab}>Inactive tab</button>
-        <div style={styles.panel}>Panel</div>
+// const [1,2] = useState(0)
+
+const Tabs = props => {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  return (
+    <div>
+      {props.data.map((country, index) => {
+        const style =
+          activeIndex === index ? styles.activeTab : styles.tab
+        return (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            style={style}
+          >
+            {country.name}
+          </button>
+        )
+      })}
+      <div style={styles.panel}>
+        {props.data[activeIndex].description}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 styles.tab = {
@@ -58,4 +81,7 @@ styles.panel = {
   padding: 10
 }
 
-ReactDOM.render(<Tabs data={countries} />, document.getElementById('root'))
+ReactDOM.render(
+  <Tabs data={countries} />,
+  document.getElementById('root')
+)
